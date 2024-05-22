@@ -3,7 +3,7 @@ import { supabase } from '../supabase'
 
 export const useTaskStore = defineStore('tasks', {
   state: () => ({
-    tasks: null
+    tasks: null //tasks -> es el listado de las tareas
   }),
   actions: {
     async fetchTasks() {

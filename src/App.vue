@@ -1,6 +1,6 @@
 <template>
   <section>
-    <router-view class="app-main" />
+    <router-view />
     <!-- your routes will load inside of these tags -->
   </section>
 </template>
@@ -9,7 +9,7 @@
 import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
-import { useUserStore } from './store/user.js'
+import { useUserStore } from './stores/userStore.js'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -18,7 +18,10 @@ const { user } = storeToRefs(userStore)
 onMounted(async () => {
   try {
     await userStore.fetchUser() // here we call fetch user
-    if (!user.value) {
+    console.log('User: ', user.value.data.user)
+    //userStore.signInWithEmail()
+    //userStore.signOut()
+    if (!user.value.data.user) {
       // redirect them to logout if the user is not there
       router.push({ path: '/auth' })
     } else {
