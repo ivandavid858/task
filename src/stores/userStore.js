@@ -14,13 +14,23 @@ export const useUserStore = defineStore('user', {
       this.user = user
     },
     async signInWithEmail(email, password) {
+      //Inicia la sesión
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password
       })
-      //console.log('User de useStore: ', data.user.value)
-      if (data?.user) {
+      if (data) {
         this.user = data.user
+        console.log(this.user)
+        //Obtiene el perfil del usuario logueado
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select()
+          .match({ user_id: this.user.id })
+        if (profile) this.profile = profile[0]
+        console.log('profile in store: ', profile)
+      }
+      if (data?.user) {
         return { success: true }
       } else {
         return { success: false, error }
