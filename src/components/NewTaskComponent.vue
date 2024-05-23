@@ -6,7 +6,7 @@ const taskTitle = ref('')
 const taskDescription = ref('')
 
 // constant to save a variable that defines the custom event that will be emitted to the DashboardView
-const emit = defineEmits(['new-task'])
+const emit = defineEmits(['new-task-event'])
 
 const newTaskEmit = () => {
   if (taskTitle.value.length === 0 || taskDescription.value.length === 0) {
@@ -21,7 +21,7 @@ const newTaskEmit = () => {
       title: taskTitle.value,
       description: taskDescription.value
     }
-    emit('new-task', newTask)
+    emit('new-task-event', newTask)
     taskTitle.value = ''
     taskDescription.value = ''
     //showAddForm.value = !showAddForm.value

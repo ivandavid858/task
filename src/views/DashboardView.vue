@@ -32,7 +32,7 @@ onUpdated(() => {
 
 <template>
   <h1>Add a new Task</h1>
-  <NewTaskComponent @new-task="addTask"></NewTaskComponent>
+  <NewTaskComponent @new-task-event="addTask"></NewTaskComponent>
   <!--@new-task:evento, addTask:handler-->
   <div v-for="task in taskStore.tasks" :key="task.id">
     <h2>{{ task.title }}</h2>
