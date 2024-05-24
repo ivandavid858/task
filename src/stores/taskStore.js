@@ -2,8 +2,6 @@ import { defineStore } from 'pinia'
 import { supabase } from '../supabase'
 import { useUserStore } from './userStore'
 
-//const userStore = useUserStore()
-
 export const useTaskStore = defineStore('tasks', {
   state: () => ({
     tasks: null //tasks -> es el listado de las tareas
@@ -19,7 +17,7 @@ export const useTaskStore = defineStore('tasks', {
     },
 
     async addtask(title, description) {
-      //console.log('UserId: ', await useUserStore().user.id)
+      console.log('UserId: ', await useUserStore().user?.id)
       const { data, error } = await supabase.from('tasks').insert([
         {
           user_id: useUserStore().user?.id,
@@ -28,8 +26,10 @@ export const useTaskStore = defineStore('tasks', {
           description: description
         }
       ])
-      //console.log('My data tasks: ', useTaskStore().tasks)
-      if (error) throw error
+      if (error) {
+        console.log('Error inserting task: ', error)
+        throw error
+      }
     },
 
     async updateTaskEdit(id, title, description) {
@@ -41,6 +41,10 @@ export const useTaskStore = defineStore('tasks', {
           description: description
         })
         .match({ id: id })
+    },
+
+    async deleteTask(taskId) {
+      const { data, error } = await supabase.from('tasks').delete().match({ id: taskId })
     }
   }
 })

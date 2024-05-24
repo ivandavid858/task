@@ -2,7 +2,7 @@
   <div v-if="show" class="modal-overlay">
     <div class="modal-content">
       <h2>Edit Task</h2>
-      <form>
+      <form @submit.prevent="updateTaskEdit">
         <div>
           <label for="title">Title:</label>
           <input type="text" v-model="editedTask.title" id="title" required />
@@ -11,7 +11,7 @@
           <label for="description">Description:</label>
           <textarea v-model="editedTask.description" id="description" required></textarea>
         </div>
-        <button @click="updateTaskEdit" type="submit">Save</button>
+        <button type="submit">Save</button>
         <button type="button" @click="closeModal">Cancel</button>
       </form>
     </div>
@@ -20,10 +20,6 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-
-//we define the emits that are passed on to the father and that
-//we are going to use to trigger the different functionalities
-//const emit = defineEmits(['update-task-edit-event'])
 
 // Props to receive the task to edit and visibility state
 const props = defineProps({

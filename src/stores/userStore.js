@@ -13,6 +13,13 @@ export const useUserStore = defineStore('user', {
       const user = await supabase.auth.getUser()
       this.user = user
     },
+
+    getters: {
+      isAuthenticated(state) {
+        return state.user !== null && state.user !== undefined && state.user.data !== null
+      }
+    },
+
     async signInWithEmail(email, password) {
       //Inicia la sesión
       const { data, error } = await supabase.auth.signInWithPassword({

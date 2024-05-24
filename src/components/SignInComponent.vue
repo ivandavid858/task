@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 
@@ -50,7 +50,9 @@ async function signInWithEmail() {
       <button type="submit">Sign In</button>
     </form>
   </section>
+  <!--
   <SignUpComponent></SignUpComponent>
+  -->
 </template>
 
 <style scoped>
