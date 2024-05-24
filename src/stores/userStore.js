@@ -12,11 +12,15 @@ export const useUserStore = defineStore('user', {
     async fetchUser() {
       const user = await supabase.auth.getUser()
       this.user = user
-    },
+      if (this.user.data.user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select()
+          .match({ user_id: this.user.data.user.id })
 
-    getters: {
-      isAuthenticated(state) {
-        return state.user !== null && state.user !== undefined && state.user.data !== null
+        if (profile) this.profile = profile[0]
+        console.log('User in store: ' + this.user)
+        console.log('Profile in store: ' + this.profile)
       }
     },
 

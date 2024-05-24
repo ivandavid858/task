@@ -16,17 +16,19 @@ const { user } = storeToRefs(userStore)
 
 onMounted(async () => {
   try {
-    await userStore.fetchUser()
-
-    // If the current route requires auth and the user is not authenticated, redirect to /auth
-    const requiresAuth = router.currentRoute.value.matched.some(
-      (record) => record.meta.requiresAuth
-    )
-    if (requiresAuth && !userStore.isAuthenticated) {
+    await userStore.fetchUser() // here we call fetch user
+    console.log('User: ', user.value.data.user)
+    //userStore.signInWithEmail()
+    //userStore.signOut()
+    if (!user.value.data.user) {
+      // redirect them to logout if the user is not there
       router.push({ path: '/auth' })
+    } else {
+      // continue to dashboard
+      router.push({ path: '/' })
     }
-  } catch (error) {
-    console.error('Error fetching user:', error)
+  } catch (e) {
+    console.log(e)
   }
 })
 </script>
