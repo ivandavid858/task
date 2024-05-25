@@ -9,13 +9,14 @@ export const useUserStore = defineStore('user', {
 
   actions: {
     async fetchUser() {
-      const user = await supabase.auth.getUser()
-      this.user = user
-      if (this.user.data.user) {
+      const result = await supabase.auth.getUser()
+      console.log(result)
+      this.user = result.data.user
+      if (this.user) {
         const { data: profile } = await supabase
           .from('profiles')
           .select()
-          .match({ user_id: this.user.data.user.id })
+          .match({ user_id: this.user.id })
 
         if (profile) this.profile = profile[0]
         console.log('User in store: ' + this.user)
@@ -29,9 +30,10 @@ export const useUserStore = defineStore('user', {
         email: email,
         password: password
       })
-      if (data) {
+      console.log('Data:  ', data)
+      if (data.user) {
         this.user = data.user
-        console.log(this.user)
+        //console.log(this.user)
         //Obtiene el perfil del usuario logueado
         const { data: profile } = await supabase
           .from('profiles')

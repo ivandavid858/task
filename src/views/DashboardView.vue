@@ -12,7 +12,7 @@
     @close="isModalOpen = false"
     @update="updateTaskEdit"
   ></EditTaskModalComponent>
-  <button @click="signOut">Sign Out</button>
+  <button class="btn btn-primary mt-5" @click="signOut">Sign Out</button>
 </template>
 
 <script setup>

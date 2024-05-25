@@ -1,21 +1,41 @@
 <template>
-  <section>
-    <h1>Sign Up</h1>
-    <form @submit.prevent="signUpWithEmail" class="center">
-      <div>
-        <label for="email-signup">Email</label>
-        <input :class="errorEmail" v-model="email" type="text" />
+  <section class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <h1 class="text-center">Sign Up</h1>
+        <form @submit.prevent="signUpWithEmail" class="center">
+          <div class="mb-3">
+            <label for="email-signup" class="form-label">Email</label>
+            <input
+              :class="errorEmail"
+              v-model="email"
+              type="text"
+              class="form-control"
+              id="email-signup"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password-signup" class="form-label">Password</label>
+            <input
+              v-model="passwordSignUp1"
+              type="password"
+              class="form-control"
+              id="password-signup"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Confirm Password</label>
+            <input
+              v-model="passwordSignUp2"
+              type="password"
+              class="form-control"
+              id="confirm-password"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
       </div>
-      <div>
-        <label for="password-signup">Password</label>
-        <input v-model="passwordSignUp1" type="password" />
-      </div>
-      <div>
-        <label for="password">Confirm Password</label>
-        <input v-model="passwordSignUp2" type="password" />
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+    </div>
   </section>
 </template>
 
@@ -28,8 +48,8 @@ const router = useRouter()
 const useStore = useUserStore()
 
 const email = ref('')
-const passwordSignUp1 = ref(/*localStorage.getItem('passwordSignUp1') || */ '')
-const passwordSignUp2 = ref(/*localStorage.getItem('passwordSignUp2') || */ '')
+const passwordSignUp1 = ref('')
+const passwordSignUp2 = ref('')
 const errorEmail = ref('')
 
 function tieneArroba(text) {
@@ -46,16 +66,17 @@ function isFormValidated() {
 }
 
 function isPasswordsEqual(password, confirmPassword) {
-  return password == confirmPassword
+  return password === confirmPassword
 }
 
 async function signUpWithEmail() {
   if (!isFormValidated()) {
-    alert('Ingrese un email valido')
+    alert('Please enter a valid email.')
     return false
   }
   if (!isPasswordsEqual(passwordSignUp1.value, passwordSignUp2.value)) {
-    alert('Los passwords deben coincidir')
+    alert('Passwords must match.')
+    return false
   }
   const result = await useStore.signUp(email.value, passwordSignUp1.value)
   if (result.success) {
@@ -68,18 +89,10 @@ async function signUpWithEmail() {
 </script>
 
 <style scoped>
-label {
-  display: block;
-}
 .center {
-  background-color: rgb(159, 194, 224);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.login {
-  height: 200px;
-  width: 400px;
 }
 .errorMsg {
   border: 3px solid red;

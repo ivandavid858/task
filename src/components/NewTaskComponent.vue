@@ -1,11 +1,27 @@
 <template>
   <form @submit.prevent="newTaskEmit">
-    <div>
-      <input v-model="taskTitle" type="text" placeholder="Task Title" />
-      <br />
-      <textarea v-model="taskDescription" type="text" placeholder="Task description"></textarea>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Email address</label>
+      <input
+        v-model="taskTitle"
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="Task Title"
+      />
     </div>
-    <button type="submit">Add</button>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+      <textarea
+        v-model="taskDescription"
+        type="text"
+        placeholder="Task description"
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+      ></textarea>
+    </div>
+    <button class="btn btn-primary mb-5" type="submit">Add</button>
   </form>
 </template>
 

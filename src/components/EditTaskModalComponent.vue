@@ -5,14 +5,19 @@
       <form @submit.prevent="updateTaskEdit">
         <div>
           <label for="title">Title:</label>
-          <input type="text" v-model="editedTask.title" id="title" required />
+          <input type="text" v-model="editedTask.title" class="form-control" id="title" required />
         </div>
         <div>
           <label for="description">Description:</label>
-          <textarea v-model="editedTask.description" id="description" required></textarea>
+          <textarea
+            v-model="editedTask.description"
+            class="form-control"
+            id="description"
+            required
+          ></textarea>
         </div>
-        <button type="submit">Save</button>
-        <button type="button" @click="closeModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn btn-danger" @click="closeModal">Cancel</button>
       </form>
     </div>
   </div>
