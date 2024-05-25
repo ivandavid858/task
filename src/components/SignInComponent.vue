@@ -39,6 +39,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
+import Header from '../components/Header.vue'
 
 const router = useRouter()
 const useStore = useUserStore()

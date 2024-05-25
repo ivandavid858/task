@@ -66,6 +66,14 @@ export const useUserStore = defineStore('user', {
         return { success: false, error }
       }
     },
+
+    async updateProfile(editedProfile) {
+      const { error: uploadError } = await supabase
+        .from('profiles')
+        .update(editedProfile)
+        .match({ user_id: this.user.id })
+    },
+
     persist: {
       enabled: true,
       strategies: [

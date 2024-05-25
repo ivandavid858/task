@@ -1,4 +1,5 @@
 <template>
+  <Header></Header>
   <h1>Add a new Task</h1>
   <NewTaskComponent @new-task-event="addTask"></NewTaskComponent>
 
@@ -13,6 +14,7 @@
     @update="updateTaskEdit"
   ></EditTaskModalComponent>
   <button class="btn btn-primary mt-5" @click="signOut">Sign Out</button>
+  <Footer></Footer>
 </template>
 
 <script setup>
@@ -23,6 +25,8 @@ import { useTaskStore } from '../stores/taskStore'
 import NewTaskComponent from '../components/NewTaskComponent.vue'
 import EditTaskModalComponent from '../components/EditTaskModalComponent.vue'
 import ListTaskComponent from '../components/ListTaskComponent.vue'
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
 
 const router = useRouter()
 const useStore = useUserStore()
