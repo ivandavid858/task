@@ -1,45 +1,48 @@
 <template>
-  <main class="form-signin m-auto">
-    <form @submit.prevent="signInWithEmail">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+  <div class="d-flex align-items-center justify-content-center vh-100">
+    <main class="form-signin m-auto" style="max-width: 500px">
+      <form @submit.prevent="signInWithEmail">
+        <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
 
-      <div class="form-floating">
-        <input
-          type="text"
-          :class="inputClasses"
-          v-model="email"
-          id="floatingInput"
-          placeholder="name@example.com"
-        />
-        <label for="email">Email address</label>
-      </div>
-      <div class="form-floating">
-        <input
-          v-model="password"
-          type="password"
-          class="form-control"
-          id="floatingPassword"
-          placeholder="Password"
-        />
-        <label for="password">Password</label>
-      </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            :class="inputClasses"
+            v-model="email"
+            id="floatingInput"
+            placeholder="name@example.com"
+            style="width: 100%"
+          />
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            v-model="password"
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            style="width: 100%"
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
 
-      <div class="checkbox mb-3">
-        <label> <input type="checkbox" value="remember-me" /> Remember me </label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    </form>
-    <p class="text-center mt-3">
-      Don't have an account? <router-link to="/auth/sign-up">Sign Up</router-link>
-    </p>
-  </main>
+        <div class="checkbox mb-3">
+          <label> <input type="checkbox" value="remember-me" /> Remember me </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      </form>
+      <p class="text-center mt-3">
+        Don't have an account? <router-link to="/auth/sign-up">Sign Up</router-link>
+      </p>
+    </main>
+  </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
-import Header from '../components/Header.vue'
 
 const router = useRouter()
 const useStore = useUserStore()

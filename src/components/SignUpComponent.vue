@@ -1,49 +1,50 @@
 <template>
-  <section class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-6">
-        <h1 class="text-center">Sign Up</h1>
-        <form @submit.prevent="signUpWithEmail" class="center">
-          <div class="mb-3">
-            <label for="email-signup" class="form-label">Email</label>
-            <input
-              :class="errorEmail"
-              v-model="email"
-              type="text"
-              class="form-control"
-              id="email-signup"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="password-signup" class="form-label">Password</label>
-            <input
-              v-model="passwordSignUp1"
-              type="password"
-              class="form-control"
-              id="password-signup"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Confirm Password</label>
-            <input
-              v-model="passwordSignUp2"
-              type="password"
-              class="form-control"
-              id="confirm-password"
-            />
-          </div>
-          <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
+  <div class="d-flex align-items-center justify-content-center vh-100">
+    <section class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <h1 class="text-center">Sign Up</h1>
+          <form @submit.prevent="signUpWithEmail" class="w-100">
+            <div class="mb-3">
+              <label for="email-signup" class="form-label">Email</label>
+              <input
+                :class="errorEmail"
+                v-model="email"
+                type="text"
+                class="form-control"
+                id="email-signup"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password-signup" class="form-label">Password</label>
+              <input
+                v-model="passwordSignUp1"
+                type="password"
+                class="form-control"
+                id="password-signup"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Confirm Password</label>
+              <input
+                v-model="passwordSignUp2"
+                type="password"
+                class="form-control"
+                id="confirm-password"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
-import Header from '../components/Header.vue'
 
 const router = useRouter()
 const useStore = useUserStore()
@@ -90,11 +91,6 @@ async function signUpWithEmail() {
 </script>
 
 <style scoped>
-.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .errorMsg {
   border: 3px solid red;
 }
