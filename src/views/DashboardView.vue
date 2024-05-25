@@ -1,19 +1,21 @@
 <template>
   <Header></Header>
-  <h1>Add a new Task</h1>
-  <NewTaskComponent @new-task-event="addTask"></NewTaskComponent>
+  <div class="container">
+    <h1 class="mt-4">Add a new Task</h1>
+    <NewTaskComponent @new-task-event="addTask"></NewTaskComponent>
 
-  <ListTaskComponent :openModal="openModal" :tasks="taskStore.tasks" :deleteTask="deleteTask">
-  </ListTaskComponent>
+    <ListTaskComponent :openModal="openModal" :tasks="taskStore.tasks" :deleteTask="deleteTask">
+    </ListTaskComponent>
 
-  <EditTaskModalComponent
-    v-if="isModalOpen"
-    :show="isModalOpen"
-    :task="selectedTask"
-    @close="isModalOpen = false"
-    @update="updateTaskEdit"
-  ></EditTaskModalComponent>
-  <button class="btn btn-primary mt-5" @click="signOut">Sign Out</button>
+    <EditTaskModalComponent
+      v-if="isModalOpen"
+      :show="isModalOpen"
+      :task="selectedTask"
+      @close="isModalOpen = false"
+      @update="updateTaskEdit"
+    ></EditTaskModalComponent>
+    <button class="btn btn-primary mt-5 mb-5" @click="signOut">Sign Out</button>
+  </div>
   <Footer></Footer>
 </template>
 

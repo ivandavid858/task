@@ -1,10 +1,16 @@
 <template>
-  <div v-for="task in filteredTasks" :key="task.id" class="card">
-    <div class="card-body">
-      <h2 class="card-title">{{ task.title }}</h2>
-      <p class="card-text">{{ task.description }}</p>
-      <button @click="openModal(task)" class="btn btn-primary">Edit</button>
-      <button @click="deleteTask(task.id)" class="btn btn-danger">Delete</button>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div v-for="task in filteredTasks" :key="task.id" class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">{{ task.title }}</h2>
+            <p class="card-text">{{ task.description }}</p>
+            <button @click="openModal(task)" class="btn btn-primary">Edit</button>
+            <button @click="deleteTask(task.id)" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
